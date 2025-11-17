@@ -9,18 +9,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class CourseRegistry {
+public class Stud_Register {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String StudentName;
+    private String name;
     private String email;
-    private String coursetype;
+    private String course;
 
-
-
-
+    public Stud_Register(String name, String email, String course) {
+    }
 }

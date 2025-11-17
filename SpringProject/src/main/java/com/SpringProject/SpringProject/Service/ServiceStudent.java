@@ -1,34 +1,58 @@
 package com.SpringProject.SpringProject.Service;
 
-import com.SpringProject.SpringProject.Module.CourseRegistry;
 import com.SpringProject.SpringProject.Module.Courses;
-import com.SpringProject.SpringProject.Repository.RegistryRepository;
-import com.SpringProject.SpringProject.Repository.RepoStudent;
+import com.SpringProject.SpringProject.Module.Stud_Register;
+import com.SpringProject.SpringProject.Repository.RepoCourse;
+import com.SpringProject.SpringProject.Repository.RepoStudentReg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ServiceStudent {
     @Autowired
-    RepoStudent repo;
+    RepoCourse repo;
+
 
     @Autowired
-    RegistryRepository regrepo;
+    RepoStudentReg repostud;
 
-    public Courses studdetailAdd(String name, String course, String trainer) {
-        Courses ss=new Courses();
-        ss.setCourseName(name);
-        ss.setCourseType(course);
-        ss.setTrainer(trainer);
-       return  repo.save(ss);
-//        return "Added SuccessFully";
+    //==========================================================Student Registered======================================================================//
+
+
+    public void studputdet(String name, String email, String course) {
+       Stud_Register ss=new Stud_Register(name,email,course);
+          repostud.save(ss);
+    }
+
+    public List<Stud_Register> servgetstud() {
+        return repostud.findAll();
+    }
+
+
+
+//    public CourseRegistry resstud(CourseRegistry cr) {
+//        return regrepo.save(cr);
+//    }
+
+//    public List<CourseRegistry> servgetstud() {
+//        return regrepo.findAll();
+//    }
+
+//    public CourseRegistry updstud(CourseRegistry cr) {
+//        return regrepo.save(cr);
+//    }
+
+    //==========================================================List The Courses======================================================================//
+
+    public List<Courses> ListStud() {
+        return repo.findAll();
     }
 
     public Courses studdet(Courses st) {
-         return repo.save(st);
+        return repo.save(st);
     }
 
-    public CourseRegistry resstud(CourseRegistry cr) {
-        return regrepo.save(cr);
-    }
+
 }
